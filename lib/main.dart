@@ -35,9 +35,8 @@ class MyApp extends StatelessWidget {
         // TODO: text Theme
         //textTheme:
         //scaffoldBackgroundColor: Colors.blue, //Color(0xDAD7CD) , //gray
-
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'App Home Page'),
     );
   }
 }
@@ -62,7 +61,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
 
+//should be a constant?
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home Page'),
     Text('Tasks Page'),
@@ -70,36 +71,54 @@ class _MyHomePageState extends State<MyHomePage> {
     Text('Journal Page'),
   ];
 
+  void _onItemTapped(int index) {
+    // This call to setState tells the Flutter framework that something has
+    // changed in this State, which causes it to rerun the build method below
+    // so that the display can reflect the updated values. If we changed
+    // _counter without calling setState(), then the build method would not be
+    // called again, and so nothing would appear to happen.
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     //Scaffold to contain the bottom navigation
-     return MaterialApp(
-      home: DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-               Tab(
-                text: 'Home',
-                icon: Icon(Icons.home)),
-               Tab(
-                text: 'Tasks',
-                icon: Icon(Icons.task)),
-               Tab(
-                text: 'Alarm',
-                icon: Icon(Icons.alarm)),
-               Tab(
-                text: 'Journal',
-                icon: Icon(Icons.book)),
-            ]
-          )
-        )
-        )
-      )
-     );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sleep List Test'),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task),
+            label: 'Tasks',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.alarm),
+            label: 'Alarm',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Journal',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.black,
+        onTap: _onItemTapped,
+      ),
+    );
   }
 }
