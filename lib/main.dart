@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // I want to import my pages here!
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sleeper List App',
+      title: 'SleepList App',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -55,16 +55,15 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-//start bottomNavStuffHere
+  //start bottomNavStuffHere
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-//should be a constant?
-  static const List<Widget> _widgetOptions = <Widget>[
+  List<Widget> _widgetOptions = <Widget>[
     Text('Home Page'),
     Text('Tasks Page'),
     Text('Alarm Page'),
@@ -72,11 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   void _onItemTapped(int index) {
-    // This call to setState tells the Flutter framework that something has
-    // changed in this State, which causes it to rerun the build method below
-    // so that the display can reflect the updated values. If we changed
-    // _counter without calling setState(), then the build method would not be
-    // called again, and so nothing would appear to happen.
     setState(() {
       _selectedIndex = index;
     });
@@ -84,13 +78,45 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    //Scaffold to contain the bottom navigation
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sleep List Test'),
+          title: const Text('Sleep List Test'),
+      ),
+      //Bottom!
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                // Update the UI based on the item selected
+                // Here you can navigate to a different page, etc.
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              onTap: () {
+                // Update the UI based on the item selected
+                // Here you can navigate to a different page, etc.
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
