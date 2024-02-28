@@ -84,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Sleep List Test'),
         actions: <Widget>[
           TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 247, 239, 167),
+              padding: const EdgeInsets.all(16.0)
+            ),
             onPressed: () {
               //handle
             }, 
