@@ -82,6 +82,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sleep List Test'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              //handle
+            }, 
+            child: const Text('Sign Up'))
+        ]
+        //top bar
       ),
       drawer: _AndroidDrawer(), // Use _AndroidDrawer as the drawer
       body: Center(
