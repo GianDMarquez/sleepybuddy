@@ -76,75 +76,128 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Sleep List Test'),
+        title: const Text('Sleep List Test'),
       ),
-      //Bottom!
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                // Update the UI based on the item selected
-                // Here you can navigate to a different page, etc.
-                Navigator.pop(context); // Close the drawer
-              },
-            ),
-            ListTile(
-              title: Text('Settings'),
-              onTap: () {
-                // Update the UI based on the item selected
-                // Here you can navigate to a different page, etc.
-                Navigator.pop(context); // Close the drawer
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: _AndroidDrawer(), // Use _AndroidDrawer as the drawer
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class _AndroidDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DrawerHeader(
+            decoration: const BoxDecoration(color: Colors.green),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Icon(
+                Icons.account_circle,
+                color: Colors.green.shade800,
+                size: 96,
+              ),
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.task),
-            label: 'Tasks',
+          ListTile(
+            leading: Icon(Icons.home),
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.alarm),
-            label: 'Alarm',
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Journal',
+          ListTile(
+            leading: Icon(Icons.person_2),
+            title: const Text('About Developer'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                // Handle the tap on the custom button
+                Navigator.pop(context); // Close the drawer
+                // Add your logic here for the button action
+              },
+              child: Container(
+                color: Colors.grey.shade200, // Background color of the button
+                child: Center(
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.black,
-        onTap: _onItemTapped,
       ),
+    );
+  }
+}
+
+
+// Define your BottomNavBar widget
+class BottomNavBar extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onItemTapped;
+
+  const BottomNavBar({
+    required this.selectedIndex,
+    required this.onItemTapped,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.task),
+          label: 'Tasks',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.alarm),
+          label: 'Alarm',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.book),
+          label: 'Journal',
+        ),
+      ],
+      currentIndex: selectedIndex,
+      selectedItemColor: Colors.green,
+      unselectedItemColor: Colors.black,
+      onTap: onItemTapped,
     );
   }
 }
