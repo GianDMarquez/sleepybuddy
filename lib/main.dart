@@ -14,25 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SleepList App',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         //primarySwatch: Colors.blue
         useMaterial3: true,
-        // TODO: text Theme
+        // TODO: THEMES
         //textTheme:
         //scaffoldBackgroundColor: Colors.blue, //Color(0xDAD7CD) , //gray
       ),
@@ -43,17 +28,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-  //idk what this.tittle means? Is that saying it's just forced to print MyHomePage
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
   //start bottomNavStuffHere
   @override
@@ -81,8 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sleep List Test'),
-        actions: <Widget>[
+        title: const Text('Sleep List'),
+        backgroundColor: Colors.blueGrey[800] //primary dark?
+        /*actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 247, 239, 167),
@@ -94,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Sign Up'))
         ]
         //top bar
+        //for sign up button*/
       ),
       drawer: _AndroidDrawer(), // Use _AndroidDrawer as the drawer
       body: Center(
@@ -115,7 +91,7 @@ class _AndroidDrawer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(color: Colors.green),
+            decoration: const BoxDecoration(color: Colors.blueGrey),
             child: Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Icon(
@@ -141,7 +117,7 @@ class _AndroidDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.person_2),
-            title: const Text('About Developer'),
+            title: const Text('About'),
             onTap: () {
               Navigator.pop(context);
             },
@@ -152,12 +128,12 @@ class _AndroidDrawer extends StatelessWidget {
                 // Handle the tap on the custom button
                 Navigator.pop(context); // Close the drawer
                 // Add your logic here for the button action
-              },
+              },/*
+
               child: Container(
                 color: Colors.grey.shade200, // Background color of the button
                 child: Center(
-                  child: Text(
-                    'Login',
+                  child: Text('Login',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -165,7 +141,7 @@ class _AndroidDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              ),*/
             ),
           ),
         ],
@@ -207,8 +183,9 @@ class BottomNavBar extends StatelessWidget {
         ),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.black,
+      //TODO: make colors
+      selectedItemColor: Color(0xFF778DA9), // Set the selected item color
+      unselectedItemColor: Color(0xFFE0E1DD), // Set the unselected item color
       onTap: onItemTapped,
     );
   }
