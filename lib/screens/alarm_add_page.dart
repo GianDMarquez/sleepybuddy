@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'alarm_page.dart';
 class AddAlarmPage extends StatefulWidget {
   @override
   _AddAlarmPageState createState() => _AddAlarmPageState();
@@ -9,8 +8,8 @@ class AddAlarmPage extends StatefulWidget {
 
 class _AddAlarmPageState extends State<AddAlarmPage> {
   TimeOfDay selectedTime = TimeOfDay.now();
-  List<bool> selectedDays = List.generate(7, (index) => false); // Initialize with all days off
-  TextEditingController alarmLabelController = TextEditingController(); // Controller for alarm label
+  List<bool> selectedDays = List.generate(7, (index) => false);
+  TextEditingController alarmLabelController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +17,29 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
       appBar: AppBar(
         title: Text('Add Alarm'),
       ),
-      body: SingleChildScrollView( // Wrap the content in a SingleChildScrollView
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Alarm Label', // Moved to the top
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), //Small Titles
+                'Alarm Label',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               TextField(
                 controller: alarmLabelController,
                 decoration: InputDecoration(
-                  hintText: 'Alarm', // Default text
+                  hintText: 'Enter alarm label',
                 ),
               ),
               SizedBox(height: 16),
               Text(
                 'Set Alarm Time',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), //Small Titles
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
-              GestureDetector( // Make the alarm time text clickable
+              GestureDetector(
                 onTap: () async {
                   final pickedTime = await showTimePicker(
                     context: context,
@@ -53,9 +52,9 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
                   }
                 },
                 child: Text(
-                  selectedTime.format(context), // Display selected time (larger font)
+                  selectedTime.format(context),
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+                ), //Time Tex BIG
               ),
               SizedBox(height: 16),
               Text(
@@ -71,7 +70,7 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
                       selectedDays[i] = value ?? false;
                     });
                   },
-                  controlAffinity: ListTileControlAffinity.leading, // Reduce spacing
+                  controlAffinity: ListTileControlAffinity.leading,
                 ),
               SizedBox(height: 16),
               Row(
@@ -87,12 +86,7 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
                   ElevatedButton(
                     onPressed: () async {
                       // Save the alarm details to SharedPreferences
-                      final alarm = Alarm(
-                        label: alarmLabelController.text,
-                        time: selectedTime,
-                        repeatDays: selectedDays,
-                      );
-                      //await saveAlarm(alarm);
+                      await saveAlarmToSharedPreferences();
 
                       // Return to the alarm page
                       Navigator.pop(context);
@@ -108,7 +102,6 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
     );
   }
 
-  // Helper function to get the day name (e.g., Monday, Tuesday)
   String getDayName(int index) {
     switch (index) {
       case 0:
@@ -130,10 +123,8 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
     }
   }
 
-  // Helper function to save the alarm details to SharedPreferences
   Future<void> saveAlarmToSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
-
     prefs.setString('alarmTime', selectedTime.format(context));
     final alarmLabel = alarmLabelController.text;
     prefs.setString('alarmLabel', alarmLabel);
