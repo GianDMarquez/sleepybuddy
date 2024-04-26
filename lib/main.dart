@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // I want to import my pages here!
 import 'screens/journal_page.dart';
