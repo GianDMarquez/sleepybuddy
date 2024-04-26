@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'journal_page.dart';
 // I want to import my pages here!
 void main() {
   runApp(MyApp());
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Text('Home Page'),
     Text('Tasks Page'),
     Text('Alarm Page'),
-    Text('Journal Page'),
+    JournalPage(),
   ];
 
   void _onItemTapped(int index) {

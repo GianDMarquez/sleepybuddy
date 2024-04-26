@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class JournalTab extends StatelessWidget {
+class JournalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +18,3 @@ class JournalTab extends StatelessWidget {
     );
   }
 }
-
-// You can add more features, widgets, and logic to the JournalPage class.
-// For example, you can create a list of journal entries, allow users to add new entries,
-// and display existing entries in a ListView or other UI components.
-
-// Don't forget to register this page in your app's navigation (e.g., using routes).
-// You can navigate to this page using Navigator.pushNamed(context, '/journal').
-
-// Happy coding! 😊
