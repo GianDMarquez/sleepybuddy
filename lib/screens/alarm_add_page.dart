@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'alarm_page.dart';
 class AddAlarmPage extends StatefulWidget {
   @override
   _AddAlarmPageState createState() => _AddAlarmPageState();
@@ -25,18 +26,18 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
             children: [
               Text(
                 'Alarm Label', // Moved to the top
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), //Small Titles
               ),
               TextField(
                 controller: alarmLabelController,
                 decoration: InputDecoration(
-                  hintText: 'Enter alarm label', // Default text
+                  hintText: 'Alarm', // Default text
                 ),
               ),
               SizedBox(height: 16),
               Text(
                 'Set Alarm Time',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), //Small Titles
               ),
               SizedBox(height: 8),
               GestureDetector( // Make the alarm time text clickable
@@ -86,7 +87,12 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
                   ElevatedButton(
                     onPressed: () async {
                       // Save the alarm details to SharedPreferences
-                      await saveAlarmToSharedPreferences();
+                      final alarm = Alarm(
+                        label: alarmLabelController.text,
+                        time: selectedTime,
+                        repeatDays: selectedDays,
+                      );
+                      //await saveAlarm(alarm);
 
                       // Return to the alarm page
                       Navigator.pop(context);
