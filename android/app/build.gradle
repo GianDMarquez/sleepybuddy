@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "edu.cpp4750.gdm.sleeplist.sleeplist"
+    namespace "edu.cpp4750.gdm.sleeplist"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

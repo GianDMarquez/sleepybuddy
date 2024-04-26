@@ -1,4 +1,4 @@
-package edu.cpp4750.gdm.sleeplist.sleeplist
+package edu.cpp4750.gdm.sleeplist
 
 import io.flutter.embedding.android.FlutterActivity
 
