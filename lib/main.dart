@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SleepList App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         //primarySwatch: Colors.blue
         useMaterial3: true,
         // TODO: THEMES
@@ -41,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _widgetOptions = <Widget>[
     Text('Home Page'),
-    Text('Tasks Page'),
     AlarmPage(),
     JournalPage(),
   ];
@@ -170,10 +169,6 @@ class BottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.task),
-          label: 'Tasks',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.alarm),

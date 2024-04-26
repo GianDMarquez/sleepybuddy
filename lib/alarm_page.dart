@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
+import 'alarm_addpage.dart';
 
-class AlarmPage extends StatelessWidget {
+class Alarm {
+  final String time;
+  final String repeatDays;
+  bool isOn; // New property to track alarm status
+
+  Alarm({required this.time, required this.repeatDays, this.isOn = false});
+}
+
+class AlarmPage extends StatefulWidget {
+  @override
+  _AlarmPageState createState() => _AlarmPageState();
+}
+
+class _AlarmPageState extends State<AlarmPage> {
+  final List<Alarm> alarms = [
+    Alarm(time: '8:00 AM', repeatDays: 'Mon, Wed, Fri'),
+    Alarm(time: '9:30 AM', repeatDays: 'Tue, Thu'),
+    // Add more alarms as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,45 +37,47 @@ class AlarmPage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: 5, // Replace with the actual number of alarms
+        itemCount: alarms.length,
         itemBuilder: (context, index) {
+          final alarm = alarms[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Card(
               elevation: 3,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               child: InkWell(
                 onTap: () {
-                  // View alarm details (e.g., time, repeat days)
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAlarmPage()));
+                  // View alarm details (e.g., navigate to ViewAlarmPage)
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAlarmPage(alarm: alarm)));
                 },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        '8:00 AM', // Replace with the actual alarm time
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            alarm.time,
+                            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            alarm.repeatDays,
+                            style: TextStyle(fontSize: 14), // Smaller font size for repeat days
+                          ),
+                        ],
                       ),
-                    ),
-                    Divider(), // Add a horizontal line
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'Alarm Name', // Replace with the actual alarm name
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      Switch(
+                        value: alarm.isOn,
+                        onChanged: (value) {
+                          setState(() {
+                            alarm.isOn = value; // Toggle alarm status
+                          });
+                        },
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        'Repeat: Mon, Wed, Fri', // Replace with the actual repeat days
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -66,49 +88,12 @@ class AlarmPage extends StatelessWidget {
   }
 }
 
-class AddAlarmPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Alarm'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Add UI elements for setting alarm time, repeat days, etc.
-            // You can use TimePicker, CheckboxListTile, etc.
-            // Implement logic to save the alarm details to storage.
-            // Example:
-            // TimePickerFormField(
-            //   // Set alarm time
-            //   onChanged: (time) {
-            //     // Save the selected time
-            //   },
-            // ),
-            // CheckboxListTile(
-            //   // Set repeat days
-            //   onChanged: (value) {
-            //     // Save the selected repeat days
-            //   },
-            // ),
-            ElevatedButton(
-              onPressed: () {
-                // Save the alarm details to storage
-                // You can implement this logic here
-                Navigator.pop(context); // Return to the alarm page
-              },
-              child: Text('Save'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class ViewAlarmPage extends StatelessWidget {
+  final Alarm alarm;
+
+  ViewAlarmPage({required this.alarm});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,12 +104,8 @@ class ViewAlarmPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text('Alarm Name', style: TextStyle(fontSize: 24)),
-            // Display alarm details (e.g., time, repeat days)
-            // You can retrieve the alarm details from storage.
-            // Example:
-            // Text('Alarm Time: 8:00 AM'),
-            // Text('Repeat: Mon, Wed, Fri'),
+            Text('Alarm Time: ${alarm.time}', style: TextStyle(fontSize: 24)),
+            Text('Repeat: ${alarm.repeatDays}'),
           ],
         ),
       ),
