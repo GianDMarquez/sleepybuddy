@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'alarm_add_page.dart';
+import '../utilities/alarm_manager_page.dart';
+import 'view_alarm_page.dart';
+
 
 class Alarm {
   final String time;

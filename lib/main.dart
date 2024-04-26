@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 
 // I want to import my pages here!
-import 'journal_page.dart';
-import 'alarm_page.dart';
-void main() {
+import 'screens/journal_page.dart';
+import 'screens/alarm_page.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AndroidAlarmManager.initialize(); // Initialize Android Alarm Manager
+
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
