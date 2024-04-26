@@ -5,7 +5,7 @@ class JournalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Journal'),
+        title: Text('Journal'), 
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -17,16 +17,47 @@ class JournalPage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: 5, // fake data
+        itemCount: 5, // Replace with the actual number of journal entries
         itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              title: Text('Journal Entry $index'),
-              subtitle: Text('Date: ${DateTime.now().toString()}'), // Replace with actual date
-              onTap: () {
-                // Navigate to the page for viewing/editing the journal entry
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ViewJournalEntryPage()));
-              },
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              child: InkWell(
+                onTap: () {
+                  // Navigate to the page for viewing/editing the journal entry
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ViewJournalEntryPage()));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'May 12, 2024', // Replace with the actual date
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Divider(), // Add a horizontal line
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Journal Entry Title', // Replace with the actual title
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo nec odio bibendum tincidunt.',
+                        maxLines: 2, 
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
         },
