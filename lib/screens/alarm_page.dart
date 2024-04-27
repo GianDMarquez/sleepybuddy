@@ -1,18 +1,11 @@
+//lib/screens/alarm_page
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../utilities/alarm.dart';
 import 'alarm_add_page.dart';
 import '../utilities/alarm_manager_page.dart';
 import 'view_alarm_page.dart';
-
-
-class Alarm {
-  final String time;
-  final String repeatDays;
-  bool isOn; // New property to track alarm status
-
-  Alarm({required this.time, required this.repeatDays, this.isOn = false});
-}
 
 class AlarmPage extends StatefulWidget {
   @override
@@ -21,8 +14,6 @@ class AlarmPage extends StatefulWidget {
 
 class _AlarmPageState extends State<AlarmPage> {
   final List<Alarm> alarms = [
-    Alarm(time: '8:00 AM', repeatDays: 'Mon, Wed, Fri'),
-    Alarm(time: '9:30 AM', repeatDays: 'Tue, Thu'),
     // Add more alarms as needed
   ];
 
@@ -63,24 +54,10 @@ class _AlarmPageState extends State<AlarmPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            alarm.time,
-                            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            alarm.repeatDays,
-                            style: TextStyle(fontSize: 14), // Smaller font size for repeat days
-                          ),
+                          // Add relevant alarm details here
                         ],
                       ),
-                      Switch(
-                        value: alarm.isOn,
-                        onChanged: (value) {
-                          setState(() {
-                            alarm.isOn = value; // Toggle alarm status
-                          });
-                        },
-                      ),
+                      // Add switch for alarm status here
                     ],
                   ),
                 ),
@@ -92,7 +69,6 @@ class _AlarmPageState extends State<AlarmPage> {
     );
   }
 }
-
 
 class ViewAlarmPage extends StatelessWidget {
   final Alarm alarm;
@@ -110,7 +86,7 @@ class ViewAlarmPage extends StatelessWidget {
         child: Column(
           children: [
             Text('Alarm Time: ${alarm.time}', style: TextStyle(fontSize: 24)),
-            Text('Repeat: ${alarm.repeatDays}'),
+            Text('Repeat: ${alarm.alarmDays}'),
           ],
         ),
       ),

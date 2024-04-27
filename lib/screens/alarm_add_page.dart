@@ -1,5 +1,7 @@
+// alarm_add_page.dart
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../utilities/alarm.dart';
 
 class AddAlarmPage extends StatefulWidget {
   @override
@@ -8,8 +10,23 @@ class AddAlarmPage extends StatefulWidget {
 
 class _AddAlarmPageState extends State<AddAlarmPage> {
   TimeOfDay selectedTime = TimeOfDay.now();
-  List<bool> selectedDays = List.generate(7, (index) => false);
+  List<String> selectedDays = List.generate(7, (index) => '0'); // Initialize with 'not selected'
   TextEditingController alarmLabelController = TextEditingController();
+  int _nextAlarmId = 2; //change so it changes
+
+  @override
+  void initState() {
+    super.initState();
+    // Retrieve the current number of alarms from shared preferences
+    _loadCurrentAlarms();
+  }
+  Future<void> _loadCurrentAlarms() async {
+    final prefs = await SharedPreferences.getInstance();
+    // Example: Retrieve the count of existing alarms
+    final existingAlarmCount = prefs.getInt('alarmCount') ?? 0;
+    // Set _nextAlarmId to the next available ID
+    _nextAlarmId = existingAlarmCount + 1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +53,6 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
               SizedBox(height: 16),
               Text(
                 'Set Alarm Time',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               GestureDetector(
@@ -54,7 +70,7 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
                 child: Text(
                   selectedTime.format(context),
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ), //Time Tex BIG
+                ), // Time Text BIG
               ),
               SizedBox(height: 16),
               Text(
@@ -64,10 +80,10 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
               for (int i = 0; i < 7; i++)
                 CheckboxListTile(
                   title: Text(getDayName(i)),
-                  value: selectedDays[i],
+                  value: selectedDays[i] == '1',
                   onChanged: (value) {
                     setState(() {
-                      selectedDays[i] = value ?? false;
+                      selectedDays[i] = value != null && value ? '1' : '0';
                     });
                   },
                   controlAffinity: ListTileControlAffinity.leading,
@@ -78,18 +94,22 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Cancel button action (return to alarm page)
                       Navigator.pop(context);
                     },
                     child: Text('Cancel'),
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      // Save the alarm details to SharedPreferences
-                      await saveAlarmToSharedPreferences();
-
-                      // Return to the alarm page
+                      print('Current _nextAlarmId: $_nextAlarmId'); // Debug print
+                      final newAlarm = Alarm(
+                        id: _nextAlarmId,
+                        label: alarmLabelController.text,
+                        time: selectedTime,
+                        alarmDays: selectedDays,
+                      );
+                      await saveAlarm(newAlarm);
                       Navigator.pop(context);
+                      _nextAlarmId++;
                     },
                     child: Text('Save'),
                   ),
@@ -119,14 +139,16 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
       case 6:
         return 'Saturday';
       default:
-        return ''; // Invalid, please don't happen
+        return ''; 
     }
   }
 
-  Future<void> saveAlarmToSharedPreferences() async {
+  Future<void> saveAlarm(Alarm alarm) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('alarmTime', selectedTime.format(context));
-    final alarmLabel = alarmLabelController.text;
-    prefs.setString('alarmLabel', alarmLabel);
+    prefs.setString('alarmTime_${alarm.id}', alarm.time.format(context));
+    prefs.setString('alarmLabel_${alarm.id}', alarm.label);
+    prefs.setStringList('alarmRepeatDays_${alarm.id}', alarm.alarmDays);
+    // Example: Update the alarm count
+    prefs.setInt('alarmCount', _nextAlarmId);
   }
 }

@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 import '../utilities/alarm_manager_page.dart';
+import '../utilities/alarm.dart';
 
 class ViewAlarmPage extends StatelessWidget {
-  final int alarmId; // Pass the alarm ID from the selected alarm
+  final Alarm alarm;
 
-  ViewAlarmPage({required this.alarmId});
+  ViewAlarmPage({required this.alarm});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +19,8 @@ class ViewAlarmPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text('Alarm Details', style: TextStyle(fontSize: 24)),
-            // Display additional alarm properties (e.g., alarm name, snooze settings)
-            ElevatedButton(
-              onPressed: () {
-                // Cancel the alarm
-                AlarmManager.cancelAlarm(alarmId);
-                Navigator.pop(context); // Return to the alarm page
-              },
-              child: Text('Cancel Alarm'),
-            ),
+            Text('Alarm Time: ${alarm.time}', style: TextStyle(fontSize: 24)),
+            Text('Repeat: ${alarm.alarmDays}'),
           ],
         ),
       ),
