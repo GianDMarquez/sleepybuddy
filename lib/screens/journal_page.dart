@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
+import 'journal_add_page.dart';
+import 'journal_view_page.dart';
 class JournalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -67,57 +69,4 @@ class JournalPage extends StatelessWidget {
   }
 }
 
-//When u hit the plus button
-class AddJournalEntryPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Journal Entry'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter your journal entry...',
-              ),
-              maxLines: null, // Allow multiple lines
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Save the journal entry to storage
-                // You can implement this logic here
-                Navigator.pop(context); // Return to the journal page
-              },
-              child: Text('Save'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
-class ViewJournalEntryPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('View Journal Entry'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text('Journal Entry Title', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16),
-            Text('Journal entry content goes here...'),
-          ],
-        ),
-      ),
-    );
-  }
-}
