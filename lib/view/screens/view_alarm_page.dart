@@ -1,8 +1,8 @@
 // view_alarm_page.dart
 
 import 'package:flutter/material.dart';
-import '../utilities/alarm_manager_page.dart';
-import '../utilities/alarm.dart';
+import '../../utilities/alarm_manager_page.dart';
+import '../../utilities/alarm.dart';
 
 class ViewAlarmPage extends StatelessWidget {
   final Alarm alarm;

@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 
 // I want to import my pages here!
-import 'screens/journal_page.dart';
-import 'screens/alarm_page.dart';
+import 'view/screens/journal_page.dart';
+import 'view/screens/alarm_page.dart';
+import 'model/journalEntry.dart';
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AndroidAlarmManager.initialize(); // Initialize Android Alarm Manager
+  await Hive.initFlutter();
+
+  // Registering the adapter
+  Hive.registerAdapter(journalEntryAdapter());
+
+  //hive open journal box
+  var journalBox = await Hive.openBox<journalEntryAdapter>("Journal");
 
   runApp(MyApp());
 }
@@ -17,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SleepList App',
+      title: 'SleepList',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         //primarySwatch: Colors.blue
