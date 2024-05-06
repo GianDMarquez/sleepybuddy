@@ -4,10 +4,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 
 // I want to import my pages here!
+import 'view/colors.dart';
+import 'view/screens/home_tab.dart';
 import 'view/screens/journal_page.dart';
 import 'view/screens/alarm_page.dart';
 import 'model/journalEntry.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ void main() async {
 
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -32,11 +34,10 @@ class MyApp extends StatelessWidget {
       title: 'SleepList',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
-        //primarySwatch: Colors.blue
+        scaffoldBackgroundColor: secondaryColorDark, //DO NOT change PLEASE
         useMaterial3: true,
         // TODO: THEMES
         //textTheme:
-        //scaffoldBackgroundColor: Colors.blue, //Color(0xDAD7CD) , //gray
       ),
       home: const MyHomePage(title: 'App Home Page'),
     );
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    Text('Home Page'),
+    Text('Home Page', style: TextStyle(color: primaryColorGray)),
     AlarmPage(),
     JournalPage(),
   ];
@@ -66,27 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sleep List'),
-        backgroundColor: Colors.blueGrey[800] //primary dark?
-        /*actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 247, 239, 167),
-              padding: const EdgeInsets.all(16.0)
-            ),
-            onPressed: () {
-              //handle
-            }, 
-            child: const Text('Sign Up'))
-        ]
-        //top bar
-        //for sign up button*/
-      ),
+      backgroundColor: primaryColorDark,
       drawer: _AndroidDrawer(), // Use _AndroidDrawer as the drawer
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -144,7 +128,7 @@ class _AndroidDrawer extends StatelessWidget {
                 // Handle the tap on the custom button
                 Navigator.pop(context); // Close the drawer
                 // Add your logic here for the button action
-              },/*
+              }, /*
 
               child: Container(
                 color: Colors.grey.shade200, // Background color of the button
@@ -166,7 +150,6 @@ class _AndroidDrawer extends StatelessWidget {
   }
 }
 
-
 // Define your BottomNavBar widget
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -180,6 +163,7 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: primaryColorDark,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -196,8 +180,8 @@ class BottomNavBar extends StatelessWidget {
       ],
       currentIndex: selectedIndex,
       //TODO: make colors
-      selectedItemColor: Color(0xFF778DA9), // Set the selected item color
-      unselectedItemColor: Color(0xFFE0E1DD), // Set the unselected item color
+      selectedItemColor: secondaryColorLight, // Set the selected item color
+      unselectedItemColor: primaryColorGray, // Set the unselected item color
       onTap: onItemTapped,
     );
   }
