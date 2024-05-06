@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 import 'journal_add_page.dart';
-import 'journal_view_page.dart';
+import 'journal_details_page.dart';
 
 class JournalPage extends StatelessWidget {
   @override

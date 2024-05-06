@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../utilities/alarm.dart';
 import 'alarm_add_page.dart';
 import '../../utilities/alarm_manager_page.dart';
-import 'view_alarm_page.dart';
+import 'alarm_details_page.dart';
 
 class AlarmPage extends StatefulWidget {
   @override
