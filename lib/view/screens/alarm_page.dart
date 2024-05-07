@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utilities/alarm.dart';
+import '../colors.dart';
 import 'alarm_add_page.dart';
 import '../../utilities/alarm_manager_page.dart';
 import 'alarm_details_page.dart';
@@ -21,10 +22,12 @@ class _AlarmPageState extends State<AlarmPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alarms'),
+       backgroundColor: primaryColorDark, 
+        title: Text('Alarms', style: TextStyle(color: primaryColorGray)),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
+            color: primaryColorGray,
             onPressed: () {
               // Navigate to the page for creating a new alarm
               Navigator.push(context, MaterialPageRoute(builder: (context) => AddAlarmPage()));

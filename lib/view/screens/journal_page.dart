@@ -1,4 +1,3 @@
-//journal testing 2.0
 import 'package:flutter/material.dart';
 
 // My Pages and Tiles

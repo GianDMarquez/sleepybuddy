@@ -8,7 +8,6 @@ class JournalTile extends StatelessWidget {
   final String title;
   final String textContent;
   //final String lastEditedDate;
-
 //change back to const
   JournalTile({
     //required this.entryID,

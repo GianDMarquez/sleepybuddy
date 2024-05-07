@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
+import 'package:sleeplist/view/screens/home_page.dart';
 
 // I want to import my pages here!
 import 'view/colors.dart';
@@ -46,17 +47,16 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
-  //start bottomNavStuffHere
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   List<Widget> _widgetOptions = <Widget>[
-    Text('Home Page', style: TextStyle(color: primaryColorGray)),
     AlarmPage(),
+    HomePage(),
     JournalPage(),
   ];
 
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColorDark,
-      drawer: _AndroidDrawer(), // Use _AndroidDrawer as the drawer
+      //drawer: _AndroidDrawer(), // Use _AndroidDrawer as the drawer
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -165,12 +165,12 @@ class BottomNavBar extends StatelessWidget {
       backgroundColor: primaryColorDark,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.alarm),
           label: 'Alarm',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.book),
