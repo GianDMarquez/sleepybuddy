@@ -26,6 +26,7 @@ class JournalTile extends StatelessWidget {
       child: Card(
         color: secondaryColorLight,
         elevation: 8,
+        shadowColor: primaryColorLight,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -43,7 +44,7 @@ class JournalTile extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(),
+            Divider(color: primaryColorLight),
             // Title
             Padding(
               padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
@@ -62,6 +63,7 @@ class JournalTile extends StatelessWidget {
                 textContent,
                 style: TextStyle(
                   fontSize: 14,
+                  //TO DO: Decide on color for text
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

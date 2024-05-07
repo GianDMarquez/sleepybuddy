@@ -14,7 +14,7 @@ class JournalPage extends StatelessWidget {
       "Tutorial",
       "Welcome to the Journal Page. Please write down any fluttering thoughts before bedtime."
     ],
-    ["May 13, 2024", "Title", "Content"]
+    ["May 13, 2024", "That's a long string!", "Today was a beautiful day filled with moments of joy and reflection. I woke up early to the sound of birds chirping outside my window, a gentle reminder that a new day had begun."]
   ];
 
   @override
