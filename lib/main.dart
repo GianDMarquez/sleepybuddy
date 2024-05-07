@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
-import 'package:sleeplist/view/screens/home_page.dart';
 
 // I want to import my pages here!
 import 'view/colors.dart';
-//import 'view/screens/home_tab.dart';
+import 'view/screens/home_page.dart';
 import 'view/screens/journal_page.dart';
 import 'view/screens/alarm_page.dart';
 import 'model/journalEntry.dart';

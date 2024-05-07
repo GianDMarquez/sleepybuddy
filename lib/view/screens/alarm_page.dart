@@ -24,6 +24,13 @@ class _AlarmPageState extends State<AlarmPage> {
       appBar: AppBar(
        backgroundColor: primaryColorDark, 
         title: Text('Alarms', style: TextStyle(color: primaryColorGray)),
+        centerTitle: true,
+         leading: Image.asset(
+                'lib/images/logo_buddy.png', // Replace with your image asset
+               // width: 72, // Set the desired width
+                //height: 72, // Set the desired height
+                //scale: 50
+              ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),

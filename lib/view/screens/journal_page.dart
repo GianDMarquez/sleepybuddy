@@ -5,44 +5,57 @@ import '../colors.dart';
 import '../custom/components/journal_tile.dart';
 import 'journal_add_page.dart';
 
-
 class JournalPage extends StatelessWidget {
+  // List of Journal
+  // Issues: Need to order! + Add Hive/Isar DB
+  List journalEntries = [
+    [
+      "May 7, 2024",
+      "Tutorial",
+      "Welcome to the Journal Page. Please write down any fluttering thoughts before bedtime."
+    ],
+    ["May 13, 2024", "Title", "Content"]
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TO DO: APP BAr Context
-      appBar: AppBar(
-        backgroundColor: primaryColorDark, 
-        title: Text('Journal Testing', style: TextStyle(color: primaryColorGray)),
-        actions: [
-          IconButton(
-            color: primaryColorGray,
-            icon: Icon(Icons.add),
-            onPressed: () {
-              // Navigate to the page for creating a new journal entry
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AddJournalEntryPage()));
-            },
+        //TO DO: APP BAr Context
+        appBar: AppBar(
+          backgroundColor: primaryColorDark,
+          title: Text('Journal', style: TextStyle(color: primaryColorGray)),
+          centerTitle: true,
+          leading: Image.asset(
+            'lib/images/logo_shortened.png', //idk
+            // width: 72, // Set the desired width
+            //height: 72, // Set the desired height
+            //scale: 50
           ),
-        ],
-      ),
-      //List -> Holding Journal Tiles
-      body: ListView(
-        children: [
-          JournalTile(
-            createdDate: "May 7, 2024",
-            title: "Tutorial",
-            textContent: "Welcome to the Journal Page. Please write down any fluttering thoughts before bedtime.",
-          ),
-           JournalTile(
-            createdDate: "May 7, 2024",
-            title: "Tutorial",
-            textContent: "Welcome to the Journal Page. Please write down any fluttering thoughts before bedtime.",
-          ),
-        ],
-      )
-    );
+          actions: [
+            IconButton(
+              color: primaryColorGray,
+              icon: Icon(Icons.add),
+              onPressed: () {
+                // Navigate to the page for creating a new journal entry
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddJournalEntryPage()));
+              },
+            ),
+          ],
+        ),
+        //List -> Holding Journal Tiles
+        body: ListView.builder(
+          //he made a tutorial
+          itemCount: journalEntries.length,
+          itemBuilder: (context, index) {
+            return JournalTile(
+              createdDate: journalEntries[index][0],
+              title: journalEntries[index][1],
+              textContent: journalEntries[index][2],
+            );
+          },
+        ));
   }
 }

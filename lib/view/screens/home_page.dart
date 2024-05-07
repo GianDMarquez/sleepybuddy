@@ -8,15 +8,18 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColorDark,
-          title: Text('SleepyBuddy', style: TextStyle(color: primaryColorGray)),
-          actions: [
-
-           Image.asset(
+          title: Text('SleepyBuddy', style: TextStyle(color: primaryColorGray)), centerTitle: true,
+          leading: Image.asset(
                 'lib/images/logo_buddy.png', // Replace with your image asset
-                width: 72, // Set the desired width
-                height: 72, // Set the desired height
+               // width: 72, // Set the desired width
+                //height: 72, // Set the desired height
+                //scale: 50
               ),
-          ],
+              actions: [
+              Image.asset(
+                'lib/images/logo_shortened.png', 
+              )
+              ]
         ),
         body: Text("Hello!", style: TextStyle(color: primaryColorGray)));
   }
