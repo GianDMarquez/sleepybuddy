@@ -11,6 +11,7 @@ class JournalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TO DO: APP BAr Context
       appBar: AppBar(
         backgroundColor: primaryColorDark, 
         title: Text('Journal Testing', style: TextStyle(color: primaryColorGray)),

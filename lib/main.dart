@@ -5,10 +5,11 @@ import 'package:hive/hive.dart';
 
 // I want to import my pages here!
 import 'view/colors.dart';
-import 'view/screens/home_tab.dart';
+//import 'view/screens/home_tab.dart';
 import 'view/screens/journal_page.dart';
 import 'view/screens/alarm_page.dart';
 import 'model/journalEntry.dart';
+import 'view/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,17 +37,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         scaffoldBackgroundColor: secondaryColorDark, //DO NOT change PLEASE
         useMaterial3: true,
-        // TODO: THEMES
         //textTheme:
       ),
-      home: const MyHomePage(title: 'App Home Page'),
+      home: SplashScreen(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
   //start bottomNavStuffHere
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -179,7 +178,6 @@ class BottomNavBar extends StatelessWidget {
         ),
       ],
       currentIndex: selectedIndex,
-      //TODO: make colors
       selectedItemColor: secondaryColorLight, // Set the selected item color
       unselectedItemColor: primaryColorGray, // Set the unselected item color
       onTap: onItemTapped,
