@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import  'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 // I want to import my pages here!
 import 'view/colors.dart';
@@ -16,12 +16,10 @@ void main() async {
   await AndroidAlarmManager.initialize(); // Initialize Android Alarm Manager
   await EntryDatabase.initialize();
 
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => EntryDatabase(),
-      child: const MyApp(),
-      )
-  );
+  runApp(ChangeNotifierProvider(
+    create: (context) => EntryDatabase(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +34,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         scaffoldBackgroundColor: secondaryColorDark, //DO NOT change PLEASE
         useMaterial3: true,
-        //textTheme:
+        //textField Theme
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: secondaryColorLight),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: primaryColorLight),
+          ),
+        ),
       ),
       home: SplashScreen(),
     );

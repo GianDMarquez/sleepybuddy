@@ -60,6 +60,7 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
                 ),
                 style: TextStyle(fontSize: 24),
                 maxLines: 1,
+                maxLength: 32,
               ),
               TextField(
                 controller: contentController,
