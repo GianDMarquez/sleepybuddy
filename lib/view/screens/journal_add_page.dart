@@ -9,6 +9,9 @@ class AddJournalEntryPage extends StatefulWidget {
 }
 
 class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -33,6 +36,7 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
               style: TextStyle(fontSize: 12, color: primaryColorGray),
             ),
             TextField(
+              controller: titleController,
               decoration: InputDecoration(
                 hintText: 'Title',
               ),
@@ -40,6 +44,7 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
               maxLines: null, // Allow multiple lines
             ),
             TextField(
+              controller: contentController,
               decoration: InputDecoration(
                 hintText: 'Enter your journal entry...',
               ),
@@ -49,7 +54,14 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
             ElevatedButton(
               onPressed: () {
                 // Save the journal entry to storage
+                String title = titleController.text;
+                String content = contentController.text;
                 // You can implement this logic here
+                // Print the values for debugging
+                print("====DEBUG=====\n");
+                print("Date: $currentDate\n");
+                print('Title: $title\n');
+                print('content: $content\n');
                 Navigator.pop(context); // Return to the journal page
               },
               child: Text('Save'),
