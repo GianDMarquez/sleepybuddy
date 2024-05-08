@@ -8,6 +8,8 @@ import 'package:sleeplist/models/entry_database.dart';
 import '../colors.dart';
 import '../custom/components/journal_tile.dart';
 import 'journal_add_page.dart';
+import 'package:sleeplist/view/screens/journal_details_page.dart';
+
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});
@@ -42,6 +44,12 @@ class _JournalPageState extends State <JournalPage> {
   // Read
   void readEntries() {
     context.read<EntryDatabase>().fetchEntries();
+  }
+
+  // navigate to notes journal page
+  // TO-DO: INDEX
+  void navigateToJournalDetails() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewJournalEntryPage()));
   }
   // Update
 
@@ -92,6 +100,7 @@ class _JournalPageState extends State <JournalPage> {
               createdDate: DateFormat('MMMM, d yyyy').format(entry.createdDate),
               title: entry.title,
               textContent: entry.content,
+              onTap: navigateToJournalDetails,
             );
           },
         ));

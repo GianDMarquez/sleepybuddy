@@ -44,9 +44,7 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
               print('Title: $title\n');
               print('Content: $content\n');
               */
-              context
-                  .read<EntryDatabase>()
-                  .addEntry(currentDate, title, content);
+              context.read<EntryDatabase>().addEntry(currentDate, title, content);
               //clear controllers 
               titleController.clear();
               contentController.clear();

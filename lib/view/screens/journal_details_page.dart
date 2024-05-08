@@ -1,30 +1,76 @@
 import 'package:flutter/material.dart';
-//import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:sleeplist/models/entry_database.dart';
+
+import '../colors.dart';
 
 class ViewJournalEntryPage extends StatefulWidget {
   @override
   _ViewJournalEntryPageState createState() => _ViewJournalEntryPageState();
 }
 
-//When u hit the plus button
 class _ViewJournalEntryPageState extends State<ViewJournalEntryPage> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    //FETCH INFO HERE?
+    //id
+    //title
+    //stuff
+
     return Scaffold(
+      backgroundColor: secondaryColorLight,
       appBar: AppBar(
-        title: Text('View Journal Entry'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text('Journal Entry Title', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16),
-            Text('Journal entry content goes here...'),
-          ],
+          iconTheme: IconThemeData(color: primaryColorGray),
+          backgroundColor: primaryColorDark,
+          title: Text(
+            'View Journal Entry',
+            style: TextStyle(color: primaryColorGray, fontSize: 24),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.save),
+                onPressed: () {
+                  print("====DEBUG=====\n");
+                  print("Pressed Save\n");
+                  //print("Date: $currentDate\n");
+                  //print('Title: $title\n');
+                  //print('Content: $content\n');
+                  Navigator.pop(context); // Return to the journal page
+                }),
+          ]),
+         body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Date
+              Text(
+                DateFormat.yMMMMEEEEd().format(DateTime.parse("2024-05-08")),
+                style: TextStyle(fontSize: 16, color: primaryColorGray),
+              ),
+              TextField(
+                controller: titleController,
+                style: TextStyle(fontSize: 24),
+                maxLines: 1,
+                maxLength: 32,
+              ),
+              TextField(
+                controller: contentController,
+                decoration: InputDecoration(
+                  hintText: 'Enter your journal entry...',
+                ),
+                style: TextStyle(fontSize: 14),
+                maxLines: null,
+              ),
+            ],
+          ),
         ),
-      ),
+      ),// TO-DO
     );
   }
 }
