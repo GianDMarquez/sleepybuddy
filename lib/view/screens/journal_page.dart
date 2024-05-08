@@ -23,10 +23,10 @@ class JournalPage extends StatelessWidget {
         //TO DO: APP BAr Context
         appBar: AppBar(
           backgroundColor: primaryColorDark,
-          title: Text('Journal', style: TextStyle(color: primaryColorGray)),
+          title: Text('Journal', style: TextStyle(color: primaryColorGray, fontSize: 24)),
           centerTitle: true,
           leading: Image.asset(
-            'lib/images/logo_shortened.png', //idk
+            'lib/images/logo_buddy.png', //idk
             // width: 72, // Set the desired width
             //height: 72, // Set the desired height
             //scale: 50

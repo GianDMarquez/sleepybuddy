@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColorDark,
-          title: Text('SleepyBuddy', style: TextStyle(color: primaryColorGray)), centerTitle: true,
+          title: Text('SleepyBuddy', style: TextStyle(color: primaryColorGray, fontSize: 24)), centerTitle: true,
           leading: Image.asset(
                 'lib/images/logo_buddy.png', // Replace with your image asset
                // width: 72, // Set the desired width

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utilities/alarm.dart';
+import '../colors.dart';
 
 class AddAlarmPage extends StatefulWidget {
   @override
@@ -31,8 +32,12 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColorLight,
       appBar: AppBar(
-        title: Text('Add Alarm'),
+        iconTheme: IconThemeData(color: primaryColorGray),
+        backgroundColor: primaryColorDark,
+        title: Text('Add Alarm', style: TextStyle(color: primaryColorGray, fontSize: 24)),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(

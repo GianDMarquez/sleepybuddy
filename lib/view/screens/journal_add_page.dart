@@ -1,24 +1,44 @@
 import 'package:flutter/material.dart';
-//import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
+
+import '../colors.dart';
 
 class AddJournalEntryPage extends StatefulWidget {
   @override
   _AddJournalEntryPageState createState() => _AddJournalEntryPageState();
 }
 
-//When u hit the plus button
 class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
   @override
   Widget build(BuildContext context) {
+    DateTime currentDate = DateTime.now();
+
     return Scaffold(
+      backgroundColor: secondaryColorLight,
       appBar: AppBar(
-        title: Text('Add Journal Entry'),
+        iconTheme: IconThemeData(color: primaryColorGray),
+        backgroundColor:
+            primaryColorDark, //changes top bar color, primaryColorDark
+        title: Text('Add Journal Entry',
+            style: TextStyle(color: primaryColorGray, fontSize: 24)),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // Date
+            Text(
+              '${DateFormat.yMMMMEEEEd().format(currentDate)}',
+              style: TextStyle(fontSize: 12, color: primaryColorGray),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Title',
+              ),
+              style: TextStyle(fontSize: 24),
+              maxLines: null, // Allow multiple lines
+            ),
             TextField(
               decoration: InputDecoration(
                 hintText: 'Enter your journal entry...',
@@ -40,5 +60,3 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
     );
   }
 }
-
-
