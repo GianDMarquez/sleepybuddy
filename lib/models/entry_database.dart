@@ -3,7 +3,6 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sleeplist/models/entry.dart';
 
-// TO-DO: Only changing text, we need more
 class EntryDatabase extends ChangeNotifier {
   static late Isar isar;
   //do I change to future?
@@ -18,37 +17,44 @@ class EntryDatabase extends ChangeNotifier {
   final List<Entry> currentEntries = [];
 
   // Create entry, save in database
-  Future<void> addEntry(String contentFromUser) async {
+  Future<void> addEntry(
+      DateTime currentDate, String usertitle, String userContent) async {
     // Create Entry
-    final newEntry = Entry()..content = contentFromUser;
+    final newEntry = Entry()
+      ..createdDate = currentDate
+      ..title = usertitle
+      ..content = userContent;
 
     // Save Entry
     await isar.writeTxn(() => isar.entrys.put(newEntry));
 
-    // re-read from db
+    // Re-read from the database
     fetchEntries();
   }
 
-    // Read entries in database
-    Future<void> fetchEntries() async {
-      List<Entry> fetchEntries = await isar.entrys.where().findAll();
-      currentEntries.clear();
-      currentEntries.addAll(fetchEntries);
-      notifyListeners(); //notify widgets for changes
-    }
+  // Read entries in database
+  Future<void> fetchEntries() async {
+    List<Entry> fetchEntries = await isar.entrys.where().findAll();
+    currentEntries.clear();
+    currentEntries.addAll(fetchEntries);
+    notifyListeners(); //notify widgets for changes
+  }
 
-    // Update, using id
-    Future<void> updateEntry(int entryID, String newContent) async {
-      final existingEntry = await isar.entrys.get(entryID);
-      if (existingEntry != null) {
-        existingEntry.content = newContent;
-        await isar.writeTxn(() => isar.entrys.put(existingEntry));
-      }
+  // Update, using id
+  //might cause issues idk
+  Future<void> updateEntry(
+      int entryID, String newTitle, String newContent) async {
+    final existingEntry = await isar.entrys.get(entryID);
+    if (existingEntry != null) {
+      existingEntry.title = newTitle; // Update the title
+      existingEntry.content = newContent; // Update the content
+      await isar.writeTxn(() => isar.entrys.put(existingEntry));
     }
+  }
 
-    // Delete a Entry
-    Future<void> deleteEntry(int entryID) async {
-      await isar.writeTxn(() => isar.entrys.delete(entryID));
-      await fetchEntries();
-    }
+  // Delete a Entry
+  Future<void> deleteEntry(int entryID) async {
+    await isar.writeTxn(() => isar.entrys.delete(entryID));
+    await fetchEntries();
+  }
 }
