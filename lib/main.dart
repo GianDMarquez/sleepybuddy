@@ -14,11 +14,11 @@ import 'models/entry_database.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // did this for databse
   await AndroidAlarmManager.initialize(); // Initialize Android Alarm Manager
-  await EntryDatabse.initialize();
+  await EntryDatabase.initialize();
 
   runApp(
     ChangeNotifierProvider(
-      create: (context) => EntryDatabse(),
+      create: (context) => EntryDatabase(),
       child: const MyApp(),
       )
   );
