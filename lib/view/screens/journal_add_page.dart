@@ -20,53 +20,57 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
       backgroundColor: secondaryColorLight,
       appBar: AppBar(
         iconTheme: IconThemeData(color: primaryColorGray),
-        backgroundColor:
-            primaryColorDark, //changes top bar color, primaryColorDark
-        title: Text('Add Journal Entry',
-            style: TextStyle(color: primaryColorGray, fontSize: 24)),
+        backgroundColor: primaryColorDark,
+        title: Text(
+          'Add Journal Entry',
+          style: TextStyle(color: primaryColorGray, fontSize: 24),
+        ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              // Save the journal entry to storage
+              String title = titleController.text;
+              String content = contentController.text;
+              // Print the values for debugging
+              print("====DEBUG=====\n");
+              print("Date: $currentDate\n");
+              print('Title: $title\n');
+              print('Content: $content\n');
+              Navigator.pop(context); // Return to the journal page
+            },
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Date
-            Text(
-              '${DateFormat.yMMMMEEEEd().format(currentDate)}',
-              style: TextStyle(fontSize: 12, color: primaryColorGray),
-            ),
-            TextField(
-              controller: titleController,
-              decoration: InputDecoration(
-                hintText: 'Title',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Date
+              Text(
+                DateFormat.yMMMMEEEEd().format(currentDate),
+                style: TextStyle(fontSize: 16, color: primaryColorGray),
               ),
-              style: TextStyle(fontSize: 24),
-              maxLines: null, // Allow multiple lines
-            ),
-            TextField(
-              controller: contentController,
-              decoration: InputDecoration(
-                hintText: 'Enter your journal entry...',
+              TextField(
+                controller: titleController,
+                decoration: InputDecoration(
+                  hintText: 'Title',
+                ),
+                style: TextStyle(fontSize: 24),
+                maxLines: 1,
               ),
-              maxLines: null, // Allow multiple lines
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Save the journal entry to storage
-                String title = titleController.text;
-                String content = contentController.text;
-                // You can implement this logic here
-                // Print the values for debugging
-                print("====DEBUG=====\n");
-                print("Date: $currentDate\n");
-                print('Title: $title\n');
-                print('content: $content\n');
-                Navigator.pop(context); // Return to the journal page
-              },
-              child: Text('Save'),
-            ),
-          ],
+              TextField(
+                controller: contentController,
+                decoration: InputDecoration(
+                  hintText: 'Enter your journal entry...',
+                ),
+                style: TextStyle(fontSize: 14),
+                maxLines: null,
+              ),
+            ],
+          ),
         ),
       ),
     );
