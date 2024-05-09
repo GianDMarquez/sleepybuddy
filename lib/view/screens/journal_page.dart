@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-//to be deleted
 
 // My Pages and Tiles
 import '../colors.dart';
@@ -24,7 +23,7 @@ class _JournalPageState extends State<JournalPage> {
   void initState() {
     super.initState();
 
-    //TO-DO: Intialize Database
+    //TODO: Intialize Database
     //if empty
     //Create Base?
     // first start-up...
@@ -82,7 +81,7 @@ void navigateToJournalDetails(int index) async {
     currentEntries.sort((a, b) => b.createdDate.compareTo(a.createdDate));
 
     return Scaffold(
-        //TO DO: APP BAr Context
+        //TODO: APP BAr Context
         appBar: AppBar(
           backgroundColor: primaryColorDark,
           title: Text('Journal',

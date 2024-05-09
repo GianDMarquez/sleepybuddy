@@ -81,7 +81,6 @@ class JournalTile extends StatelessWidget {
                     textContent,
                     style: TextStyle(
                       fontSize: 14,
-                      // TO DO: Decide on color for text
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
