@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sleeplist/models/entry_database.dart';
 
 import '../colors.dart';
 
 class ViewJournalEntryPage extends StatefulWidget {
+  final int entryIdToRetrieve; 
+  
+  ViewJournalEntryPage({required this.entryIdToRetrieve}); 
+
   @override
   _ViewJournalEntryPageState createState() => _ViewJournalEntryPageState();
 }
@@ -24,8 +29,8 @@ class _ViewJournalEntryPageState extends State<ViewJournalEntryPage> {
       appBar: AppBar(
           iconTheme: IconThemeData(color: primaryColorGray),
           backgroundColor: primaryColorDark,
-          title: Text(
-            'View Journal Entry',
+          title: Text( //debugging for now
+            'View Journal Entry ${widget.entryIdToRetrieve}',
             style: TextStyle(color: primaryColorGray, fontSize: 24),
           ),
           centerTitle: true,
@@ -34,10 +39,7 @@ class _ViewJournalEntryPageState extends State<ViewJournalEntryPage> {
                 icon: Icon(Icons.save),
                 onPressed: () {
                   print("====DEBUG=====\n");
-                  print("Pressed Save\n");
-                  //print("Date: $currentDate\n");
-                  //print('Title: $title\n');
-                  //print('Content: $content\n');
+                  print("Pressed Update\n");
                   Navigator.pop(context); // Return to the journal page
                 }),
           ]),
