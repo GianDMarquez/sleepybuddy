@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:sleeplist/models/entry_database.dart';
 
 import '../colors.dart';
 
-class ViewJournalEntryPage extends StatefulWidget {
+// to be deleted
+class EditJournalEntryPageByID extends StatefulWidget {
   final int entryIdToRetrieve; 
-  
-  ViewJournalEntryPage({required this.entryIdToRetrieve}); 
+  EditJournalEntryPageByID({required this.entryIdToRetrieve}); 
 
   @override
-  _ViewJournalEntryPageState createState() => _ViewJournalEntryPageState();
+  _EditJournalEntryPageByID createState() => _EditJournalEntryPageByID();
 }
 
-class _ViewJournalEntryPageState extends State<ViewJournalEntryPage> {
+class _EditJournalEntryPageByID extends State<EditJournalEntryPageByID> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     //FETCH INFO HERE?
+          //prefill
+    //titleController.text = entry.title;
+    //contentController.text = entry.content;
+
     //id
     //title
     //stuff
@@ -30,7 +36,7 @@ class _ViewJournalEntryPageState extends State<ViewJournalEntryPage> {
           iconTheme: IconThemeData(color: primaryColorGray),
           backgroundColor: primaryColorDark,
           title: Text( //debugging for now
-            'View Journal Entry ${widget.entryIdToRetrieve}',
+            'Edit Journal Entry ${widget.entryIdToRetrieve}',
             style: TextStyle(color: primaryColorGray, fontSize: 24),
           ),
           centerTitle: true,

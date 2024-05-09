@@ -48,8 +48,9 @@ class EntryDatabase extends ChangeNotifier {
     if (existingEntry != null) {
       existingEntry.title = newTitle; // Update the title
       existingEntry.content = newContent; // Update the content
-      await entryDB.writeTxn(() => entryDB.entrys.put(existingEntry));
+      await entryDB.writeTxn(() => entryDB.entrys.put(existingEntry)); 
     }
+    await fetchEntries();
   }
 
   // Delete a Entry
@@ -60,6 +61,15 @@ class EntryDatabase extends ChangeNotifier {
 
   //Get Entry
   Future<Entry?> getEntryById(int entryID) async {
-    return await entryDB.entrys.get(entryID);
+    final entry = await entryDB.entrys.get(entryID);
+    return entry;
   }
+
+  //idk what differeence between sync and entry is
+  //to be deleted
+   Future<Entry?> getEntry_sync(int entryID) async {
+    final entry = entryDB.entrys.getSync(entryID);
+    return entry;
+  }
+
 }

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:popover/popover.dart';
 import 'package:provider/provider.dart';
-
+import 'package:sleeplist/view/screens/journal_edit_byID.dart';
+//to be deleted
 
 // My Pages and Tiles
 import '../colors.dart';
 import '../custom/components/journal_tile.dart';
 import 'journal_add_page.dart';
-import 'package:sleeplist/view/screens/journal_details_page.dart';
+import 'package:sleeplist/view/screens/journal_edit_page.dart';
 import 'package:sleeplist/models/entry.dart';
 import 'package:sleeplist/models/entry_database.dart';
 
@@ -20,19 +21,6 @@ class JournalPage extends StatefulWidget {
 }
 
 class _JournalPageState extends State<JournalPage> {
-  // List of Journal
-  List journalEntries = [
-    [
-      "May 7, 2024",
-      "Tutorial",
-      "Welcome to the Journal Page. Please write down any fluttering thoughts before bedtime."
-    ],
-    [
-      "May 13, 2024",
-      "That's a long string!",
-      "Today was a beautiful day filled with moments of joy and reflection. I woke up early to the sound of birds chirping outside my window, a gentle reminder that a new day had begun."
-    ]
-  ];
 
   @override
   void initState() {
@@ -48,21 +36,56 @@ class _JournalPageState extends State<JournalPage> {
   }
   // Create -> Journal Add Page
 
-    // Read
-    void readEntries() {
-      context.read<EntryDatabase>().fetchEntries();
-    }
+  // Read
+  void readEntries() {
+    context.read<EntryDatabase>().fetchEntries();
+  }
 
-    // navigate to notes journal page
-    // TO-DO: INDEX
-    void navigateToJournalDetails() {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => ViewJournalEntryPage()));
-    }
+  // navigate to notes journal page
+void navigateToJournalDetails(int index) async {
+  final editEntry = await context.read<EntryDatabase>().getEntryById(index);
+  if (editEntry != null) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditJournalEntryPage(entry: editEntry),
+      ),
+    );
+  } else {
+    // Handle the case where the entry with the specified index is not found
+    print('Entry not found for index $index');
+  }
+}
 
-    // Update
+//im going to leave this in the commit
+  void navigateToEditJournalDetails(int entryIdToRetrieve) {
+    print("DEBUGGG\n");
+    print("entryID: $entryIdToRetrieve\n");
+    Navigator.push(context,
+        MaterialPageRoute(
+          builder: (context) => EditJournalEntryPageByID(
+            entryIdToRetrieve: entryIdToRetrieve
+          ) 
+        )
+    );
+  }
 
-    // Delete
+  // Update
+  void updateEntry(int entryIdToRetrieve) async {
+    navigateToJournalDetails(entryIdToRetrieve);
+  }
+
+  // Delete
+  deleteEntryByID(int entryID) {
+    context.read<EntryDatabase>().deleteEntry(entryID);
+  }
+
+  // Get Entry
+  //prob deleted?
+  void getEntry(int entryIdToRetrieve) async {
+    final entry =
+        await context.read<EntryDatabase>().getEntryById(entryIdToRetrieve);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,17 +127,15 @@ class _JournalPageState extends State<JournalPage> {
             final entry = currentEntries[index];
 
             return JournalTile(
+              entryID: entry.entryID,
               createdDate: DateFormat('MMMM, d yyyy').format(entry.createdDate),
               title: entry.title,
               textContent: entry.content,
-              onTap: navigateToJournalDetails,
-              onDeletePressed: deleteEntry(),
-              //onLongPress: () => showPopover(context: context, bodyBuilder: (context) => JournalPopOverMenu(),)
-              //onLongPress: navToTest,
+              onTap: () => updateEntry(entry.entryID),
+              onEditTap: () => updateEntry(entry.entryID),
+              onDeleteTap: () => deleteEntryByID(entry.entryID),
             );
           },
         ));
   }
-  
-  deleteEntry() {}
 }
