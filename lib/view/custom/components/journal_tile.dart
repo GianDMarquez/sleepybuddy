@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:popover/popover.dart';
+import 'package:sleeplist/view/custom/components/journal_menu.dart';
+import 'package:sleeplist/view/screens/journal_details_page.dart';
 
 import '../../colors.dart';
 
@@ -11,7 +14,8 @@ class JournalTile extends StatelessWidget {
   //final String lastEditedDate;
 
   final void Function()? onTap;
-  //final void Function()? onLongPress;
+
+  final void Function()? onDeletePressed;
 
   const JournalTile({
     //required this.entryID,
@@ -22,14 +26,18 @@ class JournalTile extends StatelessWidget {
     required this.textContent,
     //required this.lastEditedDate
     required this.onTap,
-   // required this.onLongPress,
+    required this.onDeletePressed,
   });
 
   @override
   Widget build(BuildContext context) {
- return GestureDetector(
+      void navigateToJournalDetails() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ViewJournalEntryPage()));
+  }
+
+    return GestureDetector(
       onTap: onTap,
-      //onLongPress: onLongPress,
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8, top: 16),
         child: Card(
@@ -44,11 +52,13 @@ class JournalTile extends StatelessWidget {
             children: [
               // Date
               Padding(
-                padding: const EdgeInsets.only(left: 16.0, bottom: 8.0, top: 8.0),
+                padding:
+                    const EdgeInsets.only(left: 16.0, bottom: 8.0, top: 8.0),
                 child: Text(
                   createdDate,
                   style: TextStyle(
                     fontSize: 24,
+                    color: primaryColorGray,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -67,7 +77,7 @@ class JournalTile extends StatelessWidget {
               ),
               // Content
               Padding(
-                padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
+                padding: const EdgeInsets.only(left: 16.0),
                 child: Text(
                   textContent,
                   style: TextStyle(
@@ -76,6 +86,25 @@ class JournalTile extends StatelessWidget {
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Builder(
+                  builder: (context) {
+                    return IconButton(
+                      icon: const Icon(Icons.more_vert),
+                      color: primaryColorGray,
+                      onPressed: () => showPopover(
+                        width: 120,
+                        height: 72, 
+                        context: context, 
+                        bodyBuilder: (context) => JournalPopOverMenu(
+                          onEditTap: navigateToJournalDetails, 
+                          onDeleteTap: onDeletePressed,
+                        )),
+                    );
+                  }
                 ),
               ),
             ],
