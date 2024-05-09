@@ -34,21 +34,12 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
             icon: Icon(Icons.save),
             onPressed: () {
               // Save the journal entry to storage
-              // CREATE ENTRY - DB
-
-              String title = titleController.text;
-              String content = contentController.text;
-              // Print the values for debugging
-              /*print("====DEBUG=====\n");
-              print("Date: $currentDate\n");
-              print('Title: $title\n');
-              print('Content: $content\n');
-              */
-              context.read<EntryDatabase>().addEntry(currentDate, title, content);
+              context.read<EntryDatabase>().addEntry(currentDate, titleController.text, contentController.text);
               //clear controllers 
               titleController.clear();
               contentController.clear();
               Navigator.pop(context); // Return to the journal page
+              // TO-DO: Some kind of popup dialog to show that it actually added?
             },
           ),
         ],
