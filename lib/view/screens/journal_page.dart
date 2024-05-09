@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:popover/popover.dart';
 import 'package:provider/provider.dart';
-import 'package:sleeplist/view/screens/journal_edit_byID.dart';
 //to be deleted
 
 // My Pages and Tiles
@@ -57,19 +55,6 @@ void navigateToJournalDetails(int index) async {
   }
 }
 
-//im going to leave this in the commit
-  void navigateToEditJournalDetails(int entryIdToRetrieve) {
-    print("DEBUGGG\n");
-    print("entryID: $entryIdToRetrieve\n");
-    Navigator.push(context,
-        MaterialPageRoute(
-          builder: (context) => EditJournalEntryPageByID(
-            entryIdToRetrieve: entryIdToRetrieve
-          ) 
-        )
-    );
-  }
-
   // Update
   void updateEntry(int entryIdToRetrieve) async {
     navigateToJournalDetails(entryIdToRetrieve);
@@ -94,6 +79,7 @@ void navigateToJournalDetails(int index) async {
 
     // List of Journal Entries
     final List<Entry> currentEntries = entryDatabase.currentEntries;
+    currentEntries.sort((a, b) => b.createdDate.compareTo(a.createdDate));
 
     return Scaffold(
         //TO DO: APP BAr Context
@@ -120,7 +106,7 @@ void navigateToJournalDetails(int index) async {
           ],
         ),
         //List -> Holding Journal Tiles
-        body: ListView.builder(
+        body: ListView.builder( 
           //he made a tutorial
           itemCount: currentEntries.length,
           itemBuilder: (context, index) {
@@ -128,7 +114,7 @@ void navigateToJournalDetails(int index) async {
 
             return JournalTile(
               entryID: entry.entryID,
-              createdDate: DateFormat('MMMM, d yyyy').format(entry.createdDate),
+              createdDate: DateFormat('EEEE, MMMM d, y HH:mm').format(entry.createdDate),
               title: entry.title,
               textContent: entry.content,
               onTap: () => updateEntry(entry.entryID),

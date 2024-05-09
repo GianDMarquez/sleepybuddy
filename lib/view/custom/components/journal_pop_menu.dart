@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sleeplist/view/colors.dart';
 
 class JournalPopOverMenu extends StatelessWidget {
-    final void Function()? onEditTap; //db?
+    final void Function()? onEditTap; 
     final void Function()? onDeleteTap;
 
   const JournalPopOverMenu({super.key, required this.onEditTap, required this.onDeleteTap});
@@ -13,7 +13,10 @@ class JournalPopOverMenu extends StatelessWidget {
     children: [
       //EDIT
       GestureDetector(
-        onTap: onEditTap,
+        onTap: () {
+          Navigator.pop(context);
+          onEditTap!();
+        },
         child: Container(
           height:  36,
           color: primaryColorLight,
@@ -22,7 +25,10 @@ class JournalPopOverMenu extends StatelessWidget {
       ),
       //DELETE
       GestureDetector(
-        onTap: onDeleteTap,
+        onTap: () {
+           Navigator.pop(context);
+          onDeleteTap!();
+        },
         child: Container(
           height:  36,
           color: primaryColorLight,

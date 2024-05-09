@@ -20,13 +20,14 @@ class _EditJournalEntryPage extends State<EditJournalEntryPage> {
 
   @override
   Widget build(BuildContext context) {
-    //FETCH INFO HERE?
     //prefill the text
     titleController.text = widget.entry.title;
     contentController.text = widget.entry.content;
+
     //id
     int entryID = widget.entry.entryID;
-
+    //date
+    DateTime displayedDate = widget.entry.createdDate;
     return Scaffold(
       backgroundColor: secondaryColorLight,
       appBar: AppBar(
@@ -59,7 +60,7 @@ class _EditJournalEntryPage extends State<EditJournalEntryPage> {
             children: [
               // Date
               Text(
-                DateFormat.yMMMMEEEEd().format(DateTime.parse("2024-05-08")),
+                DateFormat.yMMMMEEEEd().format(displayedDate),
                 style: TextStyle(fontSize: 16, color: primaryColorGray),
               ),
               TextField(
@@ -82,7 +83,7 @@ class _EditJournalEntryPage extends State<EditJournalEntryPage> {
             ],
           ),
         ),
-      ), // TO-DO
+      ),
     );
   }
 }

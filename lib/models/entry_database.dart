@@ -65,11 +65,4 @@ class EntryDatabase extends ChangeNotifier {
     return entry;
   }
 
-  //idk what differeence between sync and entry is
-  //to be deleted
-   Future<Entry?> getEntry_sync(int entryID) async {
-    final entry = entryDB.entrys.getSync(entryID);
-    return entry;
-  }
-
 }
