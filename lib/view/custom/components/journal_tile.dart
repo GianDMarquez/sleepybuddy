@@ -7,35 +7,32 @@ import '../../colors.dart';
 
 class JournalTile extends StatelessWidget {
   //final Entry entry?
-  //final int entryID;
+  final int entryID;
   final String createdDate;
   final String title;
   final String textContent;
   //final String lastEditedDate;
 
   final void Function()? onTap;
+  
+  final void Function()? onEditTap;
+  final void Function()? onDeleteTap;
 
-  final void Function()? onDeletePressed;
 
   const JournalTile({
-    //required this.entryID,
     super.key,
+    required this.entryID,
     required this.createdDate,
     required this.title,
-    //this.content = " ",
     required this.textContent,
-    //required this.lastEditedDate
+
     required this.onTap,
-    required this.onDeletePressed,
+    required this.onEditTap,
+    required this.onDeleteTap,
   });
 
   @override
   Widget build(BuildContext context) {
-      void navigateToJournalDetails() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ViewJournalEntryPage()));
-  }
-
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -102,8 +99,8 @@ class JournalTile extends StatelessWidget {
                           height: 72, 
                           context: context, 
                           bodyBuilder: (context) => JournalPopOverMenu(
-                            onEditTap: navigateToJournalDetails, 
-                            onDeleteTap: onDeletePressed,
+                            onEditTap: onEditTap, 
+                            onDeleteTap: onDeleteTap,
                           )),
                       );
                     }
