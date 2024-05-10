@@ -22,17 +22,10 @@ class _JournalPageState extends State<JournalPage> {
   @override
   void initState() {
     super.initState();
-
-    //TODO: Intialize Database
-    //if empty
-    //Create Base?
-    // first start-up...
-
     //onapp start up fetch existing entry
     readEntries();
   }
-  // Create -> Journal Add Page
-
+  
   // Read
   void readEntries() {
     context.read<EntryDatabase>().fetchEntries();
