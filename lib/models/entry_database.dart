@@ -13,6 +13,20 @@ class EntryDatabase extends ChangeNotifier {
     entryDB = await Isar.open([EntrySchema], directory: directory.path);
   }
 
+  // create Intial Data
+  Future<void> createIntialData() async {
+    DateTime initDate = DateTime.now();
+    String dummyUsertitle = "Tutorial";
+    String dummyUserContent = "Welcome to your Journal! Please write any fluttering thoughts before bedtime.";
+
+    final newEntry = Entry()
+      ..createdDate = initDate
+      ..title = dummyUsertitle
+      ..content = dummyUserContent;
+
+    // Save Entry
+    await entryDB.writeTxn(() => entryDB.entrys.put(newEntry));
+  }  
   // List of Entry
   final List<Entry> currentEntries = [];
 
@@ -48,7 +62,7 @@ class EntryDatabase extends ChangeNotifier {
     if (existingEntry != null) {
       existingEntry.title = newTitle; // Update the title
       existingEntry.content = newContent; // Update the content
-      await entryDB.writeTxn(() => entryDB.entrys.put(existingEntry)); 
+      await entryDB.writeTxn(() => entryDB.entrys.put(existingEntry));
     }
     await fetchEntries();
   }

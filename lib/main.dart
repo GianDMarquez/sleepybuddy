@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:is_first_run/is_first_run.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 // I want to import my pages here!
@@ -53,6 +55,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
   @override
   _MyHomePageState createState() => _MyHomePageState();
+  
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -68,6 +71,20 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+  @override
+  void initState() {
+  intializeEntry();
+  super.initState();
+  }
+  
+  void intializeEntry() async {
+    bool firstRun = await IsFirstRun.isFirstRun();
+    if (firstRun == true) {
+      print("===HOME_DEBUG: true\n");
+       context.read<EntryDatabase>().createIntialData();
+    } 
+    else print("===HOME_DEBUG: false\n");
   }
 
   @override
