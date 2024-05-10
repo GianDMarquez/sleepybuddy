@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 // My Pages and Tiles
 import '../colors.dart';
-import '../custom/components/journal_tile.dart';
+import '../widgets/journal_tile.dart';
 import 'journal_add_page.dart';
 import 'package:sleeplist/view/screens/journal_edit_page.dart';
 import 'package:sleeplist/models/entry.dart';

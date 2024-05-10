@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
-import 'package:sleeplist/view/custom/components/journal_pop_menu.dart';
+import 'package:sleeplist/view/widgets/journal_pop_menu.dart';
 import 'package:sleeplist/view/screens/journal_edit_page.dart';
 
-import '../../colors.dart';
+import '../colors.dart';
 
 class JournalTile extends StatelessWidget {
   //final Entry entry?

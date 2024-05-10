@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:is_first_run/is_first_run.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 // I want to import my pages here!
 import 'view/colors.dart';
 import 'view/screens/home_page.dart';
 import 'view/screens/journal_page.dart';
-import 'view/screens/alarm_page.dart';
 import 'view/screens/splash_screen.dart';
 
 import 'models/entry_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // did this for databse
-  await AndroidAlarmManager.initialize(); // Initialize Android Alarm Manager
   await EntryDatabase.initialize();
 
   runApp(ChangeNotifierProvider(
@@ -59,10 +55,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    AlarmPage(),
     HomePage(),
     JournalPage(),
   ];
@@ -102,75 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-class _AndroidDrawer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(color: Colors.blueGrey),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Icon(
-                Icons.account_circle,
-                color: Colors.green.shade800,
-                size: 96,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: const Text('Home'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.person_2),
-            title: const Text('About'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                // Handle the tap on the custom button
-                Navigator.pop(context); // Close the drawer
-                // Add your logic here for the button action
-              }, /*
-
-              child: Container(
-                color: Colors.grey.shade200, // Background color of the button
-                child: Center(
-                  child: Text('Login',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),*/
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// Define your BottomNavBar widget
+// Should move to it's own class and take index but one thing at a time
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
@@ -185,10 +112,6 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       backgroundColor: primaryColorDark,
       items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.alarm),
-          label: 'Alarm',
-        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
