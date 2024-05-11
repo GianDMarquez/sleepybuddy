@@ -1,8 +1,8 @@
-# sleeplist
+# sleepybuddy
 
 Gian's mobile app for 4750 class.
 
-## Getting Started
+## File Structure
 
 This project is a starting point for a Flutter application.
 

@@ -1,6 +1,6 @@
 {
-    "name": "sleeplist",
-    "short_name": "sleeplist",
+    "name": "sleepybuddy",
+    "short_name": "sleepybuddy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
@@ -19,6 +19,7 @@
             "sizes": "512x512",
             "type": "image/png"
         },
+        
         {
             "src": "icons/Icon-maskable-192.png",
             "sizes": "192x192",

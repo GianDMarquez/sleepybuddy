@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // My Pages and Tiles
+import '../../models/entry.dart';
+import '../../models/entry_database.dart';
 import '../colors.dart';
 import '../widgets/journal_tile.dart';
 import 'journal_add_page.dart';
-import 'package:sleeplist/view/screens/journal_edit_page.dart';
-import 'package:sleeplist/models/entry.dart';
-import 'package:sleeplist/models/entry_database.dart';
+import 'journal_edit_page.dart';
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});

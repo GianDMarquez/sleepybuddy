@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:sleeplist/models/entry_database.dart';
 
+import '../../models/entry_database.dart';
 import '../colors.dart';
 
 class AddJournalEntryPage extends StatefulWidget {
