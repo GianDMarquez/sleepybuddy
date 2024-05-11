@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "edu.cpp4750.gdm.sleeplist" //changed from sleeplist.sleeplist
+        applicationId "edu.cpp4750.gdm.sleepybuddy"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
