@@ -76,10 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void intializeEntry() async {
     bool firstRun = await IsFirstRun.isFirstRun();
     if (firstRun == true) {
-      print("===HOME_DEBUG: true\n");
        context.read<EntryDatabase>().createIntialData();
     } 
-    else print("===HOME_DEBUG: false\n");
   }
 
   @override

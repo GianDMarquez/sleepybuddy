@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
 import 'package:sleeplist/view/widgets/journal_pop_menu.dart';
-import 'package:sleeplist/view/screens/journal_edit_page.dart';
 
 import '../colors.dart';
 
@@ -37,7 +36,7 @@ class JournalTile extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-        child: Container(
+        child: SizedBox(
           height: 192,
           child: Card(
             color: secondaryColorLight,

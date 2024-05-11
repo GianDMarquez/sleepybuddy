@@ -41,10 +41,7 @@ void navigateToJournalDetails(int index) async {
         builder: (context) => EditJournalEntryPage(entry: editEntry),
       ),
     );
-  } else {
-    // Handle the case where the entry with the specified index is not found
-    print('Entry not found for index $index');
-  }
+  } 
 }
 
   // Update
@@ -55,13 +52,6 @@ void navigateToJournalDetails(int index) async {
   // Delete
   deleteEntryByID(int entryID) {
     context.read<EntryDatabase>().deleteEntry(entryID);
-  }
-
-  // Get Entry
-  //prob deleted?
-  void getEntry(int entryIdToRetrieve) async {
-    final entry =
-        await context.read<EntryDatabase>().getEntryById(entryIdToRetrieve);
   }
 
   @override
