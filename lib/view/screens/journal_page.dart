@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 import '../colors.dart';
 import '../widgets/journal_tile.dart';
 import 'journal_add_page.dart';
-import 'package:sleeplist/view/screens/journal_edit_page.dart';
-import 'package:sleeplist/models/entry.dart';
-import 'package:sleeplist/models/entry_database.dart';
+import 'package:sleepybuddy/view/screens/journal_edit_page.dart';
+import 'package:sleepybuddy/models/entry.dart';
+import 'package:sleepybuddy/models/entry_database.dart';
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleeplist/view/colors.dart';
+import 'package:sleepybuddy/view/colors.dart';
 
 class JournalPopOverMenu extends StatelessWidget {
     final void Function()? onEditTap; 

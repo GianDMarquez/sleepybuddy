@@ -1,4 +1,4 @@
-name: sleeplist
+name: sleepybuddy
 description: "Gian's mobile app for 4750 class."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

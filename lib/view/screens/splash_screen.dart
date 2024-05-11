@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sleeplist/main.dart';
+import 'package:sleepybuddy/main.dart';
 
 import '../colors.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
-import 'package:sleeplist/view/widgets/journal_pop_menu.dart';
+import 'package:sleepybuddy/view/widgets/journal_pop_menu.dart';
 
 import '../colors.dart';
 

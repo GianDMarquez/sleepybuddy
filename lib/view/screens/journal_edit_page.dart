@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:sleeplist/models/entry.dart';
-import 'package:sleeplist/models/entry_database.dart';
+import 'package:sleepybuddy/models/entry.dart';
+import 'package:sleepybuddy/models/entry_database.dart';
 
 import '../colors.dart';
 
