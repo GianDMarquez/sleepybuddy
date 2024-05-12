@@ -48,14 +48,14 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
   
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     JournalPage(),
   ];
@@ -67,16 +67,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   @override
   void initState() {
-  intializeEntry();
+  initializeEntry();
   super.initState();
   }
   
-  void intializeEntry() async {
+void initializeEntry() async {
+  if (mounted) {
     bool firstRun = await IsFirstRun.isFirstRun();
     if (firstRun == true) {
-       context.read<EntryDatabase>().createIntialData();
-    } 
+      context.read<EntryDatabase>().createIntialData();
+    }
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +101,7 @@ class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
 
-  const BottomNavBar({
+  const BottomNavBar({super.key, 
     required this.selectedIndex,
     required this.onItemTapped,
   });

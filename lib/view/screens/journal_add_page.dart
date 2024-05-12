@@ -7,7 +7,8 @@ import '../theme/colors.dart';
 
 class AddJournalEntryPage extends StatefulWidget {
   @override
-  _AddJournalEntryPageState createState() => _AddJournalEntryPageState();
+
+   State<AddJournalEntryPage> createState() => _AddJournalEntryPageState();
 }
 
 class _AddJournalEntryPageState extends State<AddJournalEntryPage> {

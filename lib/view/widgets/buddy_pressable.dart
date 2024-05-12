@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BuddyPressed extends StatefulWidget {
+  const BuddyPressed({super.key});
+
   @override
-  _BuddyPressedState createState() => _BuddyPressedState();
+  State<BuddyPressed> createState() => _BuddyPressedState();
 }
 
 class _BuddyPressedState  extends State<BuddyPressed> {
@@ -24,10 +26,10 @@ class _BuddyPressedState  extends State<BuddyPressed> {
         duration: Duration(seconds: 4), // Animation duration
         width: _sizes[_sizeIndex],
         height: _sizes[_sizeIndex],
-        child: Image.asset("lib/images/logo_buddy_pressable.png"), // Replace with your image path
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), // Container border radius
         ),
+        child: Image.asset("lib/images/logo_buddy_pressable.png"),
       ),
     );
   }

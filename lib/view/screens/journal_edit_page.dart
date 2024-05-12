@@ -12,7 +12,7 @@ class EditJournalEntryPage extends StatefulWidget {
   EditJournalEntryPage({required this.entry});
 
   @override
-  _EditJournalEntryPage createState() => _EditJournalEntryPage();
+   State<EditJournalEntryPage> createState() => _EditJournalEntryPage();
 }
 
 class _EditJournalEntryPage extends State<EditJournalEntryPage> {
