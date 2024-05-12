@@ -24,7 +24,8 @@ assets
 └── images
     ├── logo_buddy_pressable.png
     ├── logo_buddy.png
-    └── logo_name_n_buddy.png   
+    └── logo_name_n_buddy.png
+       
 lib
 ├── models
 │   ├── entry.dart - Isar Collection 
