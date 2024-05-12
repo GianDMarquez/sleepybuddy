@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: primaryColorGray, fontSize: 24)),
           centerTitle: true,
           leading: Image.asset(
-            'lib/images/logo_buddy.png',
+            'assets/images/logo_buddy.png',
           ),
         ),
         body: Center(

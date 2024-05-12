@@ -29,7 +29,7 @@ class _BuddyPressedState  extends State<BuddyPressed> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), // Container border radius
         ),
-        child: Image.asset("lib/images/logo_buddy_pressable.png"),
+        child: Image.asset("assets/images/logo_buddy_pressable.png"),
       ),
     );
   }

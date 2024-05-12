@@ -71,7 +71,7 @@ void navigateToJournalDetails(int index) async {
               style: TextStyle(color: primaryColorGray, fontSize: 24)),
           centerTitle: true,
           leading: Image.asset(
-            'lib/images/logo_buddy.png',
+            'assets/images/logo_buddy.png',
           ),
           actions: [
             IconButton(

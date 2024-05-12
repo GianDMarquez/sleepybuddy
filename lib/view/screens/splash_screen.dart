@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     return Container(
       color: secondaryColorDark,
       child: Center(
-        child: Image.asset("lib/images/logo_name_n_buddy.png"),
+        child: Image.asset("assets/images/logo_name_n_buddy.png"),
         //logo_shortened.png
         //logo_name_n_buddy.png
       ),
