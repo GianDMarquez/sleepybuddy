@@ -16,12 +16,23 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Center(
-          child: Image.asset("lib/images/logo_buddy_pressable.png"
-              //logo_name_n_buddy.png
-              //logo_buddy_pressable.png
-              )),
+        child: InkWell(
+             onTap: () {},
+             splashColor: primaryColorDark,
+              child: Ink.image(
+                fit: BoxFit.cover,
+                width: 400,
+                height: 400,
+                image: AssetImage(
+                  "lib/images/logo_buddy_pressable.png"
+                  //logo_name_n_buddy.png
+                  //logo_buddy_pressable.png
+                  ),
+                ),
+              )
+        //logo_shortened.png
+        //logo_name_n_buddy.png
+      ),
     );
-  }
+  } 
 }
-
-        //logo_buddy_pressable.png
