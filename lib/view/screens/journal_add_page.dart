@@ -6,6 +6,8 @@ import '../../models/entry_database.dart';
 import '../theme/colors.dart';
 
 class AddJournalEntryPage extends StatefulWidget {
+  const AddJournalEntryPage({super.key});
+
   @override
 
    State<AddJournalEntryPage> createState() => _AddJournalEntryPageState();
@@ -32,7 +34,7 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: () {
               // Save the journal entry to storage
               context.read<EntryDatabase>().addEntry(currentDate, titleController.text, contentController.text);
@@ -57,19 +59,19 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
               ),
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Title',
                 ),
-                style: TextStyle(fontSize: 24),
+                style: const TextStyle(fontSize: 24),
                 maxLines: 1,
                 maxLength: 32,
               ),
               TextField(
                 controller: contentController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your journal entry...',
                 ),
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 maxLines: null,
               ),
             ],

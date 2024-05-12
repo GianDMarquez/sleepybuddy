@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
@@ -56,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    JournalPage(),
+    const HomePage(),
+    const JournalPage(),
   ];
 
   void _onItemTapped(int index) {

@@ -67,7 +67,7 @@ class JournalTile extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16.0, bottom: 4.0),
                   child: Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -78,7 +78,7 @@ class JournalTile extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
                     textContent,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                     ),
                     maxLines: 2,

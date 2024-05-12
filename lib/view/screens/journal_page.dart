@@ -76,13 +76,13 @@ void navigateToJournalDetails(int index) async {
           actions: [
             IconButton(
               color: primaryColorGray,
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
               onPressed: () {
                 // Navigate to the page for creating a new journal entry
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AddJournalEntryPage()));
+                        builder: (context) => const AddJournalEntryPage()));
               },
             ),
           ],

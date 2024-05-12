@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                     fontSize: 48,
                   )
               ),
-              BuddyPressed(),
+              const BuddyPressed(),
             ],
           ),
         ));

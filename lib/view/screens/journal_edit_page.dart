@@ -9,7 +9,7 @@ import '../theme/colors.dart';
 
 class EditJournalEntryPage extends StatefulWidget {
   final Entry entry;
-  EditJournalEntryPage({required this.entry});
+  const EditJournalEntryPage({super.key, required this.entry});
 
   @override
    State<EditJournalEntryPage> createState() => _EditJournalEntryPage();
@@ -42,7 +42,7 @@ class _EditJournalEntryPage extends State<EditJournalEntryPage> {
           centerTitle: true,
           actions: [
             IconButton(
-                icon: Icon(Icons.save),
+                icon: const Icon(Icons.save),
                 onPressed: () {
                   context
                   .read<EntryDatabase>()
@@ -66,19 +66,19 @@ class _EditJournalEntryPage extends State<EditJournalEntryPage> {
               ),
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Title',
                 ),
-                style: TextStyle(fontSize: 24),
+                style: const TextStyle(fontSize: 24),
                 maxLines: 1,
                 maxLength: 32,
               ),
               TextField(
                 controller: contentController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your journal entry...',
                 ),
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 maxLines: null,
               ),
             ],

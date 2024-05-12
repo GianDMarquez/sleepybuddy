@@ -23,7 +23,7 @@ class _BuddyPressedState  extends State<BuddyPressed> {
     return InkWell(
       onTap: _toggleGrow,
       child: AnimatedContainer(
-        duration: Duration(seconds: 4), // Animation duration
+        duration: const Duration(seconds: 4), // Animation duration
         width: _sizes[_sizeIndex],
         height: _sizes[_sizeIndex],
         decoration: BoxDecoration(
