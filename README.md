@@ -15,6 +15,7 @@ NEW MASTER BRANCH:
 * [Youtube App Demo](https://youtu.be/_PN4l1Rosh8).
 
 ## File Structure
+```
 assets
 ├── icons
 │   ├── play_store_512.png - icon
@@ -46,7 +47,7 @@ lib
 |       └── journal_popover_menu.dart - Pop-Up Menu on the Card
 |
 └── main.dart
-
+```
 ### Dependencies used
 This App was built using many flutter packages
 * [is_first_run](https://pub.dev/packages/is_first_run)
