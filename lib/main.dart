@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SleepyBuddy',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         scaffoldBackgroundColor: secondaryColorDark, //DO NOT change PLEASE
         useMaterial3: true,
         //textField Theme
