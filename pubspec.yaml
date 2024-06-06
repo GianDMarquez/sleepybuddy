@@ -55,7 +55,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   isar_generator: ^3.1.0+1
-  build_runner: ^2.4.9
+  build_runner: ^2.4.11
   flutter_launcher_icons: "^0.13.1" 
 flutter_launcher_icons:
   android: true
