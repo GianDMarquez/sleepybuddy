@@ -15,7 +15,7 @@ NEW MASTER BRANCH:
 * [Youtube App Demo](https://youtu.be/_PN4l1Rosh8).
 
 ## File Structure
-```
+```bash
 assets
 ├── icons
 │   ├── play_store_512.png - icon
